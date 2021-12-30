@@ -1,0 +1,109 @@
+{
+  "personal-info": [
+    {
+      "name": "name",
+      "placeholder": "Full Name"
+    },
+    {
+      "name": "division",
+      "placeholder": "Team Division"
+    },
+    {
+      "name": "phone",
+      "placeholder": "Phone Number"
+    },
+    {
+      "name": "parent",
+      "placeholder": "Parent's Name"
+    }
+  ],
+  "regular": [
+    {
+      "name": "A",
+      "description": "1 8\"x10\" team photo, 1 plaque with mag cover, 1 8\"x10\", 2 5\"x7\", 2 3.5\"x5\", 2 buttons, 8 individual wallets",
+      "price": 83.0
+    },
+    {
+      "name": "B",
+      "description": "1 8\"x10\" team photo, 1 8\"x10\", 2 5\"x7\", 2 buttons, 2 3\"x5\", 8 trading cards, 16 wallets",
+      "price": 53.0
+    },
+    {
+      "name": "C",
+      "description": "1 8\"x10\" team photo, 1 8\"x10\", 2 5\"x7\", 4 3.5\"x5\", 8 wallets",
+      "price": 39.0
+    },
+    {
+      "name": "D",
+      "description": "1 8\"x10\" team photo, 1 5\"x7\", 2 3.5\"x5\", 8 wallets",
+      "price": 25.0
+    },
+    {
+      "name": "E",
+      "description": "1 8\"x10\" team photo, 2 3.5\"x5\", 4 wallets",
+      "price": 19.0
+    },
+    {
+      "name": "F",
+      "description": "1 5\"x7\", 4 wallets",
+      "price": 16.0
+    }
+  ],
+  "bonus": [
+    {
+      "name": "1",
+      "description": "16 wallets",
+      "price": 20.0
+    },
+    {
+      "name": "2",
+      "description": "2 5\"x7\"",
+      "price": 15.0
+    },
+    {
+      "name": "3",
+      "description": "1 8\"x10\"",
+      "price": 15.0
+    },
+    {
+      "name": "4",
+      "description": "8 trading cards",
+      "price": 19.0
+    },
+    {
+      "name": "5",
+      "description": "16 trading cards",
+      "price": 28.0
+    },
+    {
+      "name": "6",
+      "description": "1 magazine cover",
+      "price": 18.0
+    },
+    {
+      "name": "7",
+      "description": "2 photo magnets",
+      "price": 16.0
+    },
+    {
+      "name": "8",
+      "description": "1 3\" photo button",
+      "price": 7.0
+    },
+    {
+      "name": "9",
+      "description": "1 5\"x7\" individual photo",
+      "price": 10.0
+    },
+    {
+      "name": "10",
+      "description": "1 8\"x10\" team photo",
+      "price": 15.0
+    },
+    {
+      "name": "11",
+      "description": "1 8\"x10\" photo calendar",
+      "price": 17.0
+    }
+  ]
+}

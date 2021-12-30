@@ -1,60 +1,90 @@
-class SwimmingOrder{
-    constructor(){
-        this.personalInformation();
-        this.regularPackages();
-        this.bonusPackages();
-    }
+var package = "";
+var bonus = "";
+var child_name = "";
+var division = "";
+var phone = "";
+var parent = "";
 
-    personalInformation(){
-        var div_col = $('<div class="col-sm-6 mx-auto">');
-        div_col.append('<p>1. Fill your personal information</p>');
-        var div = $('<div class="mb-3">');
-        $.getJSON("./index.json", function(json){
-            $.each(json['personal-info'], function (i, item) {
-                var i = $('<input class="form-control" type="text" name="' + item.name +'" placeholder="' + item.placeholder + '" required>');
-                div.append(i);
-            });
-        });
-        div_col.append(div);
-        div_col.appendTo('#personal-information');
-    }
-
-    regularPackages(){
-        var div_col = $('<div class="col-sm-6 mx-auto">');
-        div_col.append('<p>2. Choose a package</p>');
-        var div_list_group = $('<div class="list-group">');
-        $.getJSON("./index.json", function (json) {
-            $.each(json['regular'], function (i, item) {
-                var button = $('<button type="button" class="list-group-item list-group-item-action">');
-                button.append('<h5 class="mb-1">Package ' + item.name + '</h5>');
-                button.append('<p class="mb-1">' + item.description + '</p>');
-                var div_flex = $('<div class="d-flex w-100 justify-content-between">');
-                div_flex.append(button);
-                div_list_group.append(div_flex)
-            });
-        });
-        div_col.append(div_list_group);
-        div_col.appendTo('#regular-packages');
-    }
-
-    bonusPackages(){
-        var div_col = $('<div class="col-sm-6 mx-auto">');
-        div_col.append('<p>3. Choose a bonus</p>');
-        var div_list_group = $('<div class="list-group">');
-        $.getJSON("./index.json", function (json) {
-            $.each(json['bonus'], function (i, item) {
-                var button = $('<button type="button" class="list-group-item list-group-item-action">');
-                button.append('<h5 class="mb-1">Bonus ' + item.name + '</h5>');
-                button.append('<p class="mb-1">' + item.description + '</p>');
-                var div_flex = $('<div class="d-flex w-100 justify-content-between">');
-                div_flex.append(button);
-                div_list_group.append(div_flex)
-            });
-        });
-        div_col.append(div_list_group);
-        div_col.appendTo('#bonus-packages');
-    }
-
+function getData(callback) {
+    $.ajax({
+        url: "/info",
+        success: callback
+    });
 }
 
-const order = new SwimmingOrder();
+function loadData(json) {
+    loadPinfo(json);
+    loadPackages(json);
+    loadBonus(json);
+    submit();
+}
+
+function loadPinfo(json) {
+    var div = $('<div class="mb-3">');
+    for (var key in json['personal-info']){
+        var i = $('<input type="text" id="' + json["personal-info"][key].name +'" placeholder="' + json["personal-info"][key].placeholder + '* " required>');
+        div.append(i);
+    }
+    div.appendTo('#pinfo');
+}
+
+function loadPackages(json) {
+    var ul = $('<ul class="list-group" id="packages-ul">');
+    for (var key in json["regular"]) {
+        var li = $('<li class="list-group-item">' + json["regular"][key].name + '</li>');
+        ul.append(li);
+    }
+    ul.appendTo('#packages');
+    
+    $('#packages-ul li').on('click', function () {
+        package = $(this).html();
+    });
+}
+
+function loadBonus(json) {
+    var ul = $('<ul class="list-group" id="bonus-ul">');
+    for (var key in json["bonus"]) {
+        var li = $('<li class="list-group-item">' + json["bonus"][key].name + '</li>');
+        ul.append(li);
+    }
+    ul.appendTo('#bonus');
+
+    $('#bonus-ul li').on('click', function () {
+        bonus = $(this).html();
+    });
+}
+
+function submit(callback) {
+    $.ajax({
+        type: "POST",
+        url: "/submit",
+        data: {
+            "name": child_name,
+            "division": division,
+            "phone": phone,
+            "parent": parent,
+            "package": package,
+            "bonus": bonus
+        },
+        success: callback,
+        dataType: "text"
+    });
+}
+
+function submitAlert(data) {
+    alert(data);
+}
+
+$('#submit').on('click', function () {
+    child_name = document.getElementById("name").value;
+    division = document.getElementById("division").value;
+    phone = document.getElementById("phone").value;
+    parent = document.getElementById("parent").value;
+    submit(submitAlert);
+});
+
+getData(loadData);
+    
+/* $(document).ready(function () {
+    getData(loadData);
+}); */
